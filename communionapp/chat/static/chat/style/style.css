@@ -1,0 +1,24 @@
+.our-messeage {
+    border: solid 5px green;
+    margin-left:auto;
+    width:50%;
+}
+.not-our-messeage {
+    border: solid 5px red;
+    margin-right:auto;
+    width:50%;
+}
+.blockMesseage {
+    margin: 0px auto;
+    position:relative;
+    border: solid 5px black;
+    width: 600px;
+    height: 500px;
+    overflow-y: scroll;
+
+}
+.chatlist {
+
+        padding :0px;
+        list-style: none;
+        }

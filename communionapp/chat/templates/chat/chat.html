@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'chat/style/style.css' %}">
+    <script src="{% static 'chat/js/index.js' %}"></script>
+</head>
+<body>
+    <div class="blockMesseage">
+        <ul class="chatlist" style="width:100%">
+            {% for messeage in messeages %}
+                {% if request.user == messeage.owner %}
+                <li class="not-our-messeage">{{ messeage.text }}</li>
+                {% else %}
+                  <li  class="our-messeage">{{ messeage.text }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <textarea name="text" style="width:100%" class="text-input">
+            </textarea>
+            <input type="submit" class="btn">
+        </form>
+    </div>
+    {{ room|json_script:"room-name" }}
+    {{ id | json_script:"id" }}
+    {{ sender | json_script:"sender" }}
+
+</body>
+</html>

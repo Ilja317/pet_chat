@@ -1,0 +1,13 @@
+.new-messeages-block {
+    position: absolute;
+    right: 10px;
+    bottom: 1px;
+    padding:0px;
+}
+.new-messeage-block {
+    list-style: none;
+    width: 300px;
+    height: 75px;
+    border: solid 2px black;
+
+}

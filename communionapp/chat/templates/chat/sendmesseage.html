@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{% static 'polsovatel/js/index.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'polsovatel/css/style.css' %}">
+</head>
+<body>
+  <form action="" method="POST">
+      {% csrf_token %}
+    <textarea name="text"></textarea>
+    <input type="submit">
+  </form>
+</body>
+<ul class="new-messeages-block">
+</ul>
+{{ room|json_script:"room-name" }}
+</html>

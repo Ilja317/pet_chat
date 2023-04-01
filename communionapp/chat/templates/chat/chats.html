@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .blockMesseage {
+            margin: 0px auto;
+            position:relative;
+            border: solid 5px black;
+            width: 600px;
+            height: 1000px;
+        }
+        .chatlist {
+                position: absolute;
+                bottom: 1px;
+                padding :0px;
+                list-style: none;
+        }
+    </style>
+    <script src="{% static 'chat/js/chats.js' %}"></script>
+</head>
+<body>
+    <div class="blockMesseage">
+        <ul class="chatlist" style="width:100%">
+            {% for messeage in chats %}
+                {% if messeage.ownerone == request.user %}
+                {% if messeage.lastSender == request.user %}
+                <li style="border:solid 2px green;" data-sender="{{messeage.ownertwo}}">
+                {% elif messeage.read %}
+                <li style="border:solid 2px red;" data-sender="{{messeage.ownertwo}}">
+                {% else %}
+                <li style="border:solid 2px green;" data-sender="{{messeage.ownertwo}}">
+                {% endif %}
+                {% else %}
+                {% if messeage.lastSender == request.user %}
+                <li style="border:solid 2px green;" data-sender="{{messeage.ownerone}}">
+                {% elif messeage.read %}
+                <li style="border:solid 2px red;" data-sender="{{messeage.ownerone}}">
+                {% else %}
+                <li style="border:solid 2px green;" data-sender="{{messeage.ownerone}}">
+                {% endif %}
+                {% endif %}
+                    {% if messeage.ownerone == request.user %}
+                    <a style="color:blue;" href="{% url 'chat' messeage.id %}">{{ messeage.ownertwo.username }} </a>
+                    {% else %}
+                    <a style="color:blue;" href="{% url 'chat' messeage.id %}">{{ messeage.ownerone.username }}</a>
+                    {% endif %}
+                    <div>{{messeage.text}}</div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{{ room|json_script:"room-name" }}
+</body>
+</html>
